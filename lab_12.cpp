@@ -7,6 +7,8 @@
 #include <vector>
 using namespace std;
 
+// Constants
+
 struct Song {
   std::string name;
   std::string genre;
@@ -14,8 +16,13 @@ struct Song {
   int weekNumber;
 }
 
-void readSongs(array<Song, 52>& playlist, const string& filename) {
-  ifstream file(filename);
+void readSongs(array<Song, 52>& playlist, const string& songs) {
+  if (!songs.is_open()) {
+    cout << "Error: Could not open file '" << songs
+         << "'. Please check the file name and try again.\n";
+    return;
+  }
+  ifstream file(songs);
   int num = 0;
   while (file && num < playlist.size()) {
     file >> playlist[num].name >> playlist[num].genre >> playlist[num].artist >>
@@ -44,6 +51,8 @@ void analyzePlaylist(const array<Song, 52>& playlist) {
   } else {
     cout << "No" << endl;
   }
+  cout << "First song: " << playlist.front().name << endl;
+  cout << "Last song: " << playlist.back().name << endl;
 }
 
 int main() {
