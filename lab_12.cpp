@@ -20,8 +20,9 @@ struct Song {
 };
 
 // Function: Loads song data from 'songs.txt' into the playlist array we
-// initialized argument: playlist array reference, filename string returns:
-// nothing
+// initialized
+// argument: playlist array reference, filename string
+// returns: nothing
 void readSongs(array<Song, playlist_size>& playlist, const string& songs) {
   ifstream file(songs);
 
