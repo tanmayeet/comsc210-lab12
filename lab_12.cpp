@@ -14,14 +14,16 @@ struct Song {
   int weekNumber;
 }
 
-    void addSongs() {
+void readSongs() {
   Song s;
 }
 
 void displaySongs() {}
 
+void analyzePlaylist(const array<Song, 52>& playlist) {}
+
 int main() {
-  std::array<Song, 52>;
+  array<Song, 52> playlist{};
 
   return 0;
 }
