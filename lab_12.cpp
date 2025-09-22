@@ -19,6 +19,11 @@ struct Song {
   int weekNumber;
 };
 
+// Function prototypes
+void readSongs(array<Song, playlist_size>& playlist, const string& songs);
+void displaySongs(const array<Song, playlist_size>& playlist);
+void analyzePlaylist(const array<Song, playlist_size>& playlist);
+
 // Function: Loads song data from 'songs.txt' into the playlist array we
 // initialized
 // argument: playlist array reference, filename string
@@ -39,7 +44,9 @@ void readSongs(array<Song, playlist_size>& playlist, const string& songs) {
 
     if (playlist[num].weekNumber < 1 ||
         playlist[num].weekNumber > playlist_size) {
-      cout << "Invalid week number." << endl;
+      cout << "Invalid week number (" << playlist[num].weekNumber
+           << ") at line " << num + 1 << ". Skipping entry. \n"
+           << endl;
     }
     num++;
   }
@@ -63,6 +70,14 @@ void displaySongs(const array<Song, playlist_size>& playlist) {
 // member functions argument: playlist array reference returns: nothing
 void analyzePlaylist(const array<Song, playlist_size>& playlist) {
   cout << "Playlist Wrapped:\n";
+
+  // Uses a for loop to print each song per week. Uses a traditional for loop to
+  // iterate week number as well
+  int week = 1;
+  for (const auto& song : playlist) {
+    cout << "Week " << week << ":" << song.name << endl;
+    week++;
+  }
   cout << "Total capacity: " << playlist.size() << endl;
   cout << "Is playlist empty? ";
   if (playlist.empty()) {
