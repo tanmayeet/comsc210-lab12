@@ -22,8 +22,8 @@ struct Song {
 // Function: Loads song data from 'songs.txt' into the playlist array we
 // initialized argument: playlist array reference, filename string returns:
 // nothing
-void readSongs(array<Song, 52>& playlist, const string& songs) {
-  ifstream file(filename);
+void readSongs(array<Song, playlist_size>& playlist, const string& songs) {
+  ifstream file(songs);
 
   if (!file.is_open()) {
     cout << "Error: Could not open file '" << songs
@@ -48,7 +48,7 @@ void readSongs(array<Song, 52>& playlist, const string& songs) {
 // Function: Prints songs in the playlist
 // argument: playlist array reference
 // returns: nothing
-void displaySongs(const array<Song, 52>& playlist) {
+void displaySongs(const array<Song, playlist_size>& playlist) {
   cout << "Weekly Playlist!\n";
   for (const auto& song : playlist) {
     if (!song.name.empty()) {
@@ -60,7 +60,7 @@ void displaySongs(const array<Song, 52>& playlist) {
 
 // Function: Analyze the playlist on certain measures while using the std:array
 // member functions argument: playlist array reference returns: nothing
-void analyzePlaylist(const array<Song, 52>& playlist) {
+void analyzePlaylist(const array<Song, playlist_size>& playlist) {
   cout << "Playlist Wrapped:\n";
   cout << "Total capacity: " << playlist.size() << endl;
   cout << "Is playlist empty? ";
@@ -75,7 +75,7 @@ void analyzePlaylist(const array<Song, 52>& playlist) {
 
 int main() {
   // initialized a playlist array
-  array<Song, 52> playlist{};
+  array<Song, playlist_size> playlist{};
   // Passing playlist throught the functions
   readSongs(playlist, filename);
   displaySongs(playlist);
